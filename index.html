@@ -298,6 +298,18 @@
             color: var(--text-soft);
             margin-bottom: 48px;
         }
+        .project-image {
+            width: 100%;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+        .project-image img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
         .project {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
@@ -491,6 +503,9 @@
     <section class="projects">
         <div class="projects-label">Projects</div>
         <div class="project fade-in">
+            <div class="project-image" style="grid-column: 1 / -1;">
+                <img src="voxedge.webp" alt="VoxEdge — glowing device with multilingual text">
+            </div>
             <div class="project-meta">
                 <div>
                     <div class="project-name"><a href="https://github.com/hbdlabs/voxedge">VoxEdge</a></div>
