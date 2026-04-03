@@ -4,146 +4,338 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hbdlabs — smart systems, everywhere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            color: #1a1a1a;
-            line-height: 1.6;
-            background: #fafafa;
-        }
-        a { color: #1a1a1a; }
-        .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
 
-        /* Header */
-        header {
-            padding: 80px 0 40px;
-            border-bottom: 1px solid #e0e0e0;
+        :root {
+            --accent: #6C3AED;
+            --accent-light: #8B5CF6;
+            --accent-bg: #F5F3FF;
+            --orange: #F97316;
+            --teal: #14B8A6;
+            --text: #111827;
+            --text-secondary: #6B7280;
+            --bg: #FFFFFF;
+            --bg-soft: #F9FAFB;
+            --border: #E5E7EB;
         }
-        header h1 {
-            font-size: 2.4rem;
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-light); }
+
+        /* Hero */
+        .hero {
+            padding: 120px 24px 100px;
+            text-align: center;
+            background: linear-gradient(135deg, #F5F3FF 0%, #EFF6FF 50%, #F0FDFA 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(108, 58, 237, 0.06) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(20, 184, 166, 0.06) 0%, transparent 50%);
+            z-index: 0;
+        }
+        .hero > * { position: relative; z-index: 1; }
+        .hero-logo {
+            font-size: 1rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
         }
-        header .tagline {
-            font-size: 1.1rem;
-            color: #666;
-            margin-top: 8px;
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hero-cta:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(108, 58, 237, 0.3);
+        }
+        .hero-cta svg { width: 20px; height: 20px; }
 
         /* Vision */
         .vision {
-            padding: 60px 0;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 100px 24px;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .vision p {
+        .vision h2 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 32px;
+        }
+        .vision-grid {
+            display: grid;
+            gap: 32px;
+        }
+        .vision-item {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 16px;
+            align-items: start;
+        }
+        .vision-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .vision-item h3 {
             font-size: 1.15rem;
-            margin-bottom: 20px;
-            color: #333;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
-        .vision p:last-child { margin-bottom: 0; }
+        .vision-item p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
 
         /* Projects */
         .projects {
-            padding: 60px 0;
+            padding: 100px 24px;
+            background: var(--bg-soft);
+        }
+        .projects-inner {
+            max-width: 800px;
+            margin: 0 auto;
         }
         .projects h2 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 40px;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
             font-size: 0.85rem;
-        }
-        .project {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
             margin-bottom: 48px;
         }
-        .project h3 {
-            font-size: 1.5rem;
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid var(--border);
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .project-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+        .project-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
         }
-        .project h3 a {
-            text-decoration: none;
-            border-bottom: 2px solid #1a1a1a;
-        }
-        .project h3 a:hover {
-            border-bottom-color: #666;
-        }
-        .project .desc {
-            font-size: 1.05rem;
-            color: #444;
+        .badge-live { background: #D1FAE5; color: #065F46; }
+        .project-card h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
             margin-bottom: 12px;
+            letter-spacing: -0.02em;
         }
-        .project .tags {
+        .project-card h3 a { color: var(--text); }
+        .project-card h3 a:hover { color: var(--accent); }
+        .project-card .desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        .project-tags {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
-        .project .tag {
-            font-size: 0.8rem;
-            padding: 4px 10px;
-            background: #eee;
-            border-radius: 4px;
-            color: #555;
+        .project-tag {
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 8px;
+            background: var(--accent-bg);
+            color: var(--accent);
         }
+        .project-links {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 24px;
+        }
+        .project-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .project-links svg { width: 18px; height: 18px; }
 
         /* Footer */
         footer {
-            padding: 40px 0;
-            border-top: 1px solid #e0e0e0;
-            color: #999;
-            font-size: 0.85rem;
+            padding: 60px 24px;
+            text-align: center;
         }
-        footer a { color: #999; }
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .footer-tagline {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .footer-links a:hover { color: var(--accent); }
 
         @media (max-width: 600px) {
-            header { padding: 48px 0 32px; }
-            header h1 { font-size: 1.8rem; }
-            .vision, .projects { padding: 40px 0; }
+            .hero { padding: 80px 24px 60px; }
+            .hero p { font-size: 1.1rem; }
+            .vision, .projects { padding: 60px 24px; }
+            .project-card { padding: 24px; }
+            .vision-item { grid-template-columns: 1fr; }
+            .vision-icon { margin-bottom: -8px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>hbdlabs</h1>
-            <div class="tagline">smart systems, everywhere</div>
-        </header>
 
-        <section class="vision">
-            <p>There are seven billion people on this planet. Each one of them could run a business. Most don't — not because they lack the ability, but because the tools are out of reach.</p>
+    <section class="hero">
+        <div class="hero-logo">hbdlabs</div>
+        <h1>Smart systems,<br>everywhere.</h1>
+        <p>We take the latest open-source AI research and build intelligent systems that work for everyone — on any device, in any language, with or without internet.</p>
+        <a href="https://github.com/hbdlabs" class="hero-cta">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            View on GitHub
+        </a>
+    </section>
 
-            <p>The latest AI research is producing models and systems of extraordinary capability — multilingual models, autonomous agents, edge inference, document understanding. Most of it sits behind cloud APIs, enterprise pricing, and infrastructure assumptions that exclude the majority of the world.</p>
-
-            <p>We take what's emerging and assemble it into intelligent systems that understand business context — agents that can reason about processes, answer domain-specific questions, and act on behalf of the people they serve. Systems that work where people actually are. On devices they already own. In languages they already speak.</p>
-
-            <p>We believe every person is a potential business. AI agents and intelligent systems should be as accessible as a phone — pragmatic, maintainable, and built to run anywhere. Seven billion people. Seven billion potential businesses. We build the systems that help make that possible.</p>
-        </section>
-
-        <section class="projects">
-            <h2>Projects</h2>
-
-            <div class="project">
-                <h3><a href="https://github.com/hbdlabs/voxedge">VoxEdge</a></h3>
-                <p class="desc">Multilingual AI that runs anywhere, without internet. Upload documents, ask questions in any language, get answers with source references. Translates, explains, chats. Runs on a Raspberry Pi.</p>
-                <div class="tags">
-                    <span class="tag">RAG</span>
-                    <span class="tag">Gemma 4</span>
-                    <span class="tag">Tiny Aya</span>
-                    <span class="tag">Qdrant Edge</span>
-                    <span class="tag">FastEmbed</span>
-                    <span class="tag">offline</span>
-                    <span class="tag">multilingual</span>
-                    <span class="tag">Apache 2.0</span>
+    <section class="vision">
+        <h2>What we believe</h2>
+        <div class="vision-grid">
+            <div class="vision-item">
+                <div class="vision-icon" style="background: #FEF3C7;">&#127758;</div>
+                <div>
+                    <h3>Seven billion businesses</h3>
+                    <p>Every person is a potential business. AI agents and intelligent systems should be as accessible as a phone — not locked behind enterprise contracts and cloud dependencies.</p>
                 </div>
             </div>
-        </section>
+            <div class="vision-item">
+                <div class="vision-icon" style="background: #DBEAFE;">&#129302;</div>
+                <div>
+                    <h3>Agents that understand business</h3>
+                    <p>We build agents that reason about processes, answer domain-specific questions, and act on behalf of the people they serve. Systems that understand context, not just content.</p>
+                </div>
+            </div>
+            <div class="vision-item">
+                <div class="vision-icon" style="background: #D1FAE5;">&#128268;</div>
+                <div>
+                    <h3>Open research, pragmatic systems</h3>
+                    <p>We pick from the latest open-source AI developments — multilingual models, edge inference, vector search, document understanding — and assemble them into maintainable systems that run anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <footer>
-            <a href="https://github.com/hbdlabs">github.com/hbdlabs</a>
-        </footer>
-    </div>
+    <section class="projects">
+        <div class="projects-inner">
+            <h2>Projects</h2>
+            <div class="project-card">
+                <span class="project-badge badge-live">Open Source</span>
+                <h3><a href="https://github.com/hbdlabs/voxedge">VoxEdge</a></h3>
+                <p class="desc">Multilingual AI that runs anywhere, without internet. Upload documents, ask questions in any language, get answers with source references. Translates, explains, chats. Runs on a Raspberry Pi.</p>
+                <div class="project-tags">
+                    <span class="project-tag">RAG</span>
+                    <span class="project-tag">Gemma 4</span>
+                    <span class="project-tag">Tiny Aya</span>
+                    <span class="project-tag">Qdrant Edge</span>
+                    <span class="project-tag">offline</span>
+                    <span class="project-tag">multilingual</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/hbdlabs/voxedge">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                    <a href="https://github.com/hbdlabs/voxedge/blob/main/README.md">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Docs
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">hbdlabs</div>
+        <div class="footer-tagline">smart systems, everywhere</div>
+        <div class="footer-links">
+            <a href="https://github.com/hbdlabs">GitHub</a>
+        </div>
+    </footer>
+
 </body>
 </html>
