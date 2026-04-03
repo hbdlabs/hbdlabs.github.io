@@ -130,6 +130,7 @@
         .hero {
             padding: 80px 48px 120px;
             max-width: 900px;
+            position: relative;
         }
         .hero-tag {
             display: inline-block;
@@ -218,6 +219,17 @@
             background: var(--text);
             color: #E8E6E1;
             position: relative;
+            overflow: hidden;
+        }
+        .manifesto-bg {
+            position: absolute;
+            top: 0; right: 0;
+            width: 60%;
+            height: 100%;
+            background: url('hero.webp') center/cover no-repeat;
+            opacity: 0.15;
+            mask-image: linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 100%);
         }
         .manifesto-inner {
             max-width: 720px;
@@ -439,7 +451,8 @@
     </section>
 
     <section class="manifesto">
-        <div class="manifesto-inner">
+        <div class="manifesto-bg"></div>
+        <div class="manifesto-inner" style="position: relative; z-index: 1;">
             <div class="manifesto-label">Why "Here Be Dragons"</div>
             <blockquote>On old maps, uncharted territories were marked with dragons. <em>We build for those territories.</em></blockquote>
             <p>The most interesting problems in technology are the ones nobody has solved yet. New models, new architectures, new ways of putting systems together — every week the landscape shifts. We work at that edge, turning what just became possible into systems that create real value.</p>
