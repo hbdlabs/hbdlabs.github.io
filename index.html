@@ -212,6 +212,44 @@
             line-height: 1.7;
         }
 
+        /* Manifesto */
+        .manifesto {
+            padding: 100px 48px;
+            background: var(--text);
+            color: #E8E6E1;
+            position: relative;
+        }
+        .manifesto-inner {
+            max-width: 720px;
+        }
+        .manifesto-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 40px;
+        }
+        .manifesto blockquote {
+            font-family: 'Clash Display', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 500;
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+            color: #F5F4F0;
+            margin-bottom: 32px;
+        }
+        .manifesto blockquote em {
+            font-style: normal;
+            color: var(--accent);
+        }
+        .manifesto p {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: #9A9890;
+            margin-bottom: 20px;
+        }
+
         /* Projects */
         .projects {
             padding: 100px 48px;
@@ -350,7 +388,7 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav, .hero, .vision, .projects, footer { padding-left: 24px; padding-right: 24px; }
+            nav, .hero, .vision, .manifesto, .projects, footer { padding-left: 24px; padding-right: 24px; }
             .hero { padding-top: 48px; padding-bottom: 80px; }
             .hero h1 { font-size: 2.5rem; }
             .vision-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -400,7 +438,15 @@
         </div>
     </section>
 
-    <div class="divider"></div>
+    <section class="manifesto">
+        <div class="manifesto-inner">
+            <div class="manifesto-label">Why "Here Be Dragons"</div>
+            <blockquote>On old maps, uncharted territories were marked with dragons. <em>We build for those territories.</em></blockquote>
+            <p>Most AI development assumes stable internet, powerful cloud infrastructure, and users who speak English. That covers a fraction of the world. The rest of the map — rural schools, field clinics, remote offices, communities that speak languages no tech company has prioritized — is still marked with dragons.</p>
+            <p>We build at the edge. Not the metaphorical edge of some product roadmap, but the literal edge — where the network ends, where the power is unreliable, where a Raspberry Pi is the most powerful computer in the building. Where the only thing you can count on is the device in front of you.</p>
+            <p>That's where intelligent systems matter most. And that's where we work.</p>
+        </div>
+    </section>
 
     <section class="projects">
         <div class="projects-label">Projects</div>
