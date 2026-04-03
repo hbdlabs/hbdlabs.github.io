@@ -126,9 +126,33 @@
         .nav-link:hover { color: var(--text); }
         .nav-link svg { width: 16px; height: 16px; }
 
+        /* Hero image */
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 60%;
+            display: block;
+        }
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+        }
+
         /* Hero */
         .hero {
-            padding: 80px 48px 120px;
+            padding: 48px 48px 120px;
             max-width: 900px;
             position: relative;
         }
@@ -420,6 +444,10 @@
             GitHub
         </a>
     </nav>
+
+    <div class="hero-image">
+        <img src="hero.webp" alt="Ancient map with digital network overlay — here be dragons">
+    </div>
 
     <section class="hero">
         <div class="hero-tag fade-in">Here Be Dragons</div>
