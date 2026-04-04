@@ -294,6 +294,7 @@
         /* Projects */
         .projects {
             padding: 100px 48px;
+            max-width: 1000px;
         }
         .projects-label {
             font-size: 0.8rem;
@@ -301,40 +302,41 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--text-soft);
-            margin-bottom: 48px;
+            margin-bottom: 64px;
         }
-        .project-image {
-            width: 100%;
-            border-radius: 2px;
-            overflow: hidden;
-            margin-bottom: 32px;
-        }
-        .project-image img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            display: block;
-        }
-        .project {
+        .project-entry {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 64px;
-            align-items: start;
-            padding: 48px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 2px;
-            transition: border-color 0.3s;
+            grid-template-columns: 80px 1fr;
+            gap: 32px;
+            padding-bottom: 64px;
+            margin-bottom: 64px;
+            border-bottom: 1px solid var(--border);
         }
-        .project:hover { border-color: var(--accent); }
-        .project-meta {
+        .project-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .project-index {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.25;
+            line-height: 1;
+            padding-top: 4px;
+        }
+        .project-content {}
+        .project-header {
             display: flex;
-            flex-direction: column;
-            gap: 24px;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
         }
         .project-name {
             font-family: 'Clash Display', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
             letter-spacing: -0.03em;
         }
@@ -344,28 +346,24 @@
             transition: color 0.2s;
         }
         .project-name a:hover { color: var(--accent); }
-        .project-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #16A34A;
-            width: fit-content;
+        .project-name img { height: 32px; display: block; }
+        .project-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 2px;
         }
-        .project-status::before {
-            content: '';
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #16A34A;
-        }
+        .badge-open { background: #D1FAE5; color: #065F46; }
+        .badge-closed { background: #F3F4F6; color: #6B7280; }
         .project-links-row {
             display: flex;
             gap: 20px;
+            margin-bottom: 24px;
         }
         .project-links-row a {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             color: var(--text-soft);
             display: inline-flex;
@@ -374,26 +372,43 @@
             transition: color 0.2s;
         }
         .project-links-row a:hover { color: var(--accent); }
-        .project-links-row svg { width: 15px; height: 15px; }
+        .project-links-row svg { width: 14px; height: 14px; }
         .project-body p {
-            font-size: 1.05rem;
+            font-size: 1.02rem;
             color: var(--text-mid);
             line-height: 1.75;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
+            max-width: 640px;
+        }
+        .project-strip {
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 2px;
+            margin-bottom: 24px;
+        }
+        .project-strip img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 55%;
+            display: block;
+            filter: saturate(0.8);
         }
         .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
+            margin-top: 20px;
         }
         .project-tags span {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 0.03em;
-            padding: 4px 10px;
+            letter-spacing: 0.04em;
+            padding: 3px 8px;
             border: 1px solid var(--border);
             border-radius: 2px;
-            color: var(--text-mid);
+            color: var(--text-soft);
             text-transform: uppercase;
         }
 
@@ -445,7 +460,8 @@
             .hero { padding-top: 48px; padding-bottom: 80px; }
             .hero h1 { font-size: 2.5rem; }
             .vision-grid { grid-template-columns: 1fr; gap: 40px; }
-            .project { grid-template-columns: 1fr; gap: 32px; }
+            .project-entry { grid-template-columns: 1fr; gap: 16px; }
+            .project-index { font-size: 2.5rem; }
             footer { flex-direction: column; gap: 16px; }
             .divider { margin: 0 24px; }
         }
@@ -507,14 +523,13 @@
 
     <section class="projects">
         <div class="projects-label">Projects</div>
-        <div class="project fade-in">
-            <div class="project-image" style="grid-column: 1 / -1;">
-                <img src="voxedge.webp" alt="VoxEdge — glowing device with multilingual text">
-            </div>
-            <div class="project-meta">
-                <div>
-                    <div class="project-name"><a href="https://github.com/hbdlabs/voxedge"><img src="voxedge-logo.svg" alt="VoxEdge" style="height: 36px; display: block;"></a></div>
-                    <div class="project-status">Open Source</div>
+
+        <div class="project-entry fade-in">
+            <div class="project-index">01</div>
+            <div class="project-content">
+                <div class="project-header">
+                    <div class="project-name"><a href="https://github.com/hbdlabs/voxedge"><img src="voxedge-logo.svg" alt="VoxEdge"></a></div>
+                    <span class="project-badge badge-open">Open Source</span>
                 </div>
                 <div class="project-links-row">
                     <a href="https://github.com/hbdlabs/voxedge">
@@ -526,52 +541,53 @@
                         Docs
                     </a>
                 </div>
-            </div>
-            <div class="project-body">
-                <p>Multilingual knowledge system. One container. No internet. Ask questions in any language, get answers grounded in your documents — with sources. Translate between languages. Chat. All on the device in front of you.</p>
-                <p>A student in rural Vietnam loads a textbook and asks questions in her own language. A tourist kiosk on an island answers visitors in whatever language they speak. A community center translates government forms for people who just arrived. A classroom in a mountain village becomes a language lab. One system, every language, fully offline.</p>
-                <p>Documents go in as PDFs, Word files, or plain text — parsed with spatial layout awareness so tables and complex pages don't get lost. The retrieval pipeline uses multilingual embeddings, cross-encoder reranking for precision, and swappable LLMs: Google's Gemma 4 (Apache 2.0) or Cohere's Tiny Aya (70+ languages). Add, replace, or remove documents at runtime via API. Deploys anywhere Docker runs.</p>
-                <div class="project-tags">
-                    <span>RAG</span>
-                    <span>Gemma 4</span>
-                    <span>Tiny Aya</span>
-                    <span>Qdrant Edge</span>
-                    <span>FastEmbed</span>
-                    <span>LiteParse</span>
-                    <span>Offline</span>
-                    <span>Multilingual</span>
-                    <span>Apache 2.0</span>
+                <div class="project-strip">
+                    <img src="voxedge.webp" alt="VoxEdge">
                 </div>
-            </div>
-        </div>
-        <div class="project fade-in" style="margin-top: 48px;">
-            <div class="project-meta">
-                <div>
-                    <div class="project-name"><img src="aiw-logo.svg" alt="AI Workforce" style="height: 36px; display: block;"></div>
-                    <div class="project-status" style="color: var(--text-soft);">
-                        <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--text-soft); margin-right: 6px;"></span>
-                        Closed Source
-                    </div>
-                    <div class="project-status" style="color: var(--text-soft); margin-top: 4px;">
+                <div class="project-body">
+                    <p>Multilingual knowledge system. One container. No internet. Ask questions in any language, get answers grounded in your documents — with sources. Translate between languages. Chat. All on the device in front of you.</p>
+                    <p>A student in rural Vietnam loads a textbook and asks questions in her own language. A tourist kiosk on an island answers visitors in whatever language they speak. A community center translates government forms for people who just arrived. A classroom in a mountain village becomes a language lab. One system, every language, fully offline.</p>
+                    <p>Documents go in as PDFs, Word files, or plain text — parsed with spatial layout awareness so tables and complex pages don't get lost. The retrieval pipeline uses multilingual embeddings, cross-encoder reranking for precision, and swappable LLMs: Google's Gemma 4 (Apache 2.0) or Cohere's Tiny Aya (70+ languages). Add, replace, or remove documents at runtime via API. Deploys anywhere Docker runs.</p>
+                    <div class="project-tags">
+                        <span>RAG</span>
+                        <span>Gemma 4</span>
+                        <span>Tiny Aya</span>
+                        <span>Qdrant Edge</span>
+                        <span>FastEmbed</span>
+                        <span>LiteParse</span>
+                        <span>Offline</span>
+                        <span>Multilingual</span>
+                        <span>Apache 2.0</span>
                     </div>
                 </div>
             </div>
-            <div class="project-body">
-                <p>A platform that treats AI like a company you can hire. Specialists for legal analysis, project management, data extraction, customer response, code review, research, accounting — each with their own brain, tools, skills, and domain knowledge. You delegate work. They execute it. A human approves the result.</p>
-                <p>Workers accept tasks through voice, text, photo, and video. They read documents, search knowledge bases, remember context across conversations, schedule their own recurring work, and delegate to each other. A legal analyst can run four perspectives in parallel and synthesize them. A research agent can chain outputs through a multi-stage pipeline. A coordinator can spin up sub-agents on demand.</p>
-                <p>Everything runs under governance — policy checks before execution, quality thresholds before anything gets persisted, full audit trails, sensitivity classification. Nothing ships without human sign-off. That's the point: AI does the work, humans own the decisions.</p>
-                <div class="project-tags">
-                    <span>Orchestration</span>
-                    <span>Multi-Agent</span>
-                    <span>Human-in-the-Loop</span>
-                    <span>Governance</span>
-                    <span>Brains</span>
-                    <span>Skills</span>
-                    <span>Kubernetes</span>
-                    <span>Fly.io</span>
+        </div>
+
+        <div class="project-entry fade-in">
+            <div class="project-index">02</div>
+            <div class="project-content">
+                <div class="project-header">
+                    <div class="project-name"><img src="aiw-logo.svg" alt="AI Workforce"></div>
+                    <span class="project-badge badge-closed">Closed Source</span>
+                </div>
+                <div class="project-body">
+                    <p>A platform that treats AI like a company you can hire. Specialists for legal analysis, project management, data extraction, customer response, code review, research, accounting — each with their own brain, tools, skills, and domain knowledge. You delegate work. They execute it. A human approves the result.</p>
+                    <p>Workers accept tasks through voice, text, photo, and video. They read documents, search knowledge bases, remember context across conversations, schedule their own recurring work, and delegate to each other. A legal analyst can run four perspectives in parallel and synthesize them. A research agent can chain outputs through a multi-stage pipeline. A coordinator can spin up sub-agents on demand.</p>
+                    <p>Everything runs under governance — policy checks before execution, quality thresholds before anything gets persisted, full audit trails, sensitivity classification. Nothing ships without human sign-off. That's the point: AI does the work, humans own the decisions.</p>
+                    <div class="project-tags">
+                        <span>Orchestration</span>
+                        <span>Multi-Agent</span>
+                        <span>Human-in-the-Loop</span>
+                        <span>Governance</span>
+                        <span>Brains</span>
+                        <span>Skills</span>
+                        <span>Kubernetes</span>
+                        <span>Fly.io</span>
+                    </div>
                 </div>
             </div>
         </div>
+
     </section>
 
     <footer>
